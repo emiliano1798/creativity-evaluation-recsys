@@ -118,19 +118,12 @@ def consumer_fairness(metrics_distrib, avg_metrics):
     for group_class in [GENDER, AGE]:
         cfairness_metrics[group_class] = {}
         for metric, group_values in avg_metrics.items():
-            #if len(group_name_values[group_class]) == 2:
-            #    group1, group2 = group_name_values[group_class]
-            #    #statistically_significant = statistical_test(metrics_distrib[metric][group1], metrics_distrib[metric][group2]) TODO
-            #    cfairness_metrics[group_class][metric] = (group1, group2, avg_metrics[metric][group1] -
-            #                                           avg_metrics[metric][group2],) #statistically_significant) TODO
-            if len(group_name_values[group_class]) >= 2:
-                pairwise_diffs = []
-                for group1 in group_name_values[group_class]:
-                    for group2 in group_name_values[group_class]:
-                        if group1 != group2:
+            pairwise_diffs = []
+            for group1 in group_name_values[group_class]:
+                for group2 in group_name_values[group_class]:
+                    if group1 != group2:
+                        if group1 in avg_metrics[metric] and group2 in avg_metrics[metric]:
                             pairwise_diffs.append(abs(avg_metrics[metric][group1] - avg_metrics[metric][group2]))
-                cfairness_metrics[group_class][metric] = (group_class, np.mean(pairwise_diffs), ) #statistically_significant) TODO
-
+                            cfairness_metrics[group_class][metric] = (group_class, np.mean(pairwise_diffs),)
     return cfairness_metrics
 # REC_QUALITY_METRICS = [NDCG, MMR, SERENDIPITY, COVERAGE, DIVERSITY, NOVELTY]
-# FAIRNESS_METRICS = [CFAIRNESS, PFAIRNESS]

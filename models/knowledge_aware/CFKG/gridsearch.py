@@ -54,16 +54,16 @@ def main(args):
 
 
     chosen_hyperparam_grid = {"Ks": ["[100]"],# do not modify,it is the topK 
-    "adj_type": ["si",'bi'], 
+    "adj_type": ["si","bi"], 
     "adj_uni_type": ["sum"], 
     "alg_type": ["cfkg"], 
     "batch_size": [1024], 
     "batch_size_kg": [2048],  
     "dataset": [args.dataset],#["ml1m", 'lfm1m'], 
-    "embed_size": [64, 128], 
-    "epoch": [150], 
+    "embed_size": [64], 
+    "epoch": [50], 
     "gpu_id": [0], 
-    "kge_size": [ 64, 128], 
+    "kge_size": [ 64], 
     "l1_flag": [True], 
     "layer_size": ["[64]"], 
     "lr": [0.0001, 0.01, ], 

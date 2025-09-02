@@ -1,4 +1,2 @@
 easydict
 wandb
-pandas
-numpy
